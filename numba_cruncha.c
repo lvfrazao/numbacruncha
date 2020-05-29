@@ -217,7 +217,7 @@ void print_arr(Data *numbers)
 
 void handle_signal(int signum, siginfo_t *info, void *ptr)
 {
-    write(fileno(stdout), "\nExiting...\e[?25h\n", 20);
+    write(fileno(stdout), "\nExiting...\e[?25h\n", 19);
     exit(EXIT_FAILURE);
 }
 
