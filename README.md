@@ -5,9 +5,29 @@ Simple CLI tool that reads a stream of numbers and returns stats on the numbers.
 Example usage:
 
 ```shell
-$ numbacruncha smalltest.txt
-Sum,Count,Mean,Variance,StdDev,Min,Max,p25,p30,p40,p50,p60,p70,p75,p80,p90,p95,p99,p99.9,p99.99
-4896345.00,1000,4896.35,1654930883.15,40680.84,1.00,1047427.00,4.00,5.00,7.00,14.00,34.00,234.30,489.75,1086.60,4225.90,17557.50,81028.66,546047.88,997289.09 
+$ numbacruncha smalltest.txt  | jq
+{
+  "Sum": 4896345,
+  "Count": 1000,
+  "Mean": 4896.35,
+  "Variance": 1654930883.15,
+  "StdDev": 40680.84,
+  "Min": 1,
+  "Max": 1047427,
+  "p25": 4,
+  "p30": 5,
+  "p40": 7,
+  "p50": 14,
+  "p60": 34,
+  "p70": 234.3,
+  "p75": 489.75,
+  "p80": 1086.6,
+  "p90": 4225.9,
+  "p95": 17557.5,
+  "p99": 81028.66,
+  "p99.9": 546047.88,
+  "p99.99": 997289.09
+}
 ```
 
 Currently there are no options or flags that can be used with `numbacruncha`.
