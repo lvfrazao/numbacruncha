@@ -27,6 +27,7 @@ void print_arr(Data *numbers);
 void handle_signals(int signum, siginfo_t *info, void *ptr);
 void catch_signals();
 void print_csv(Data *numbers);
+void print_json(Data *numbers);
 
 int main(int argc, char **argv)
 {
@@ -68,7 +69,7 @@ int main(int argc, char **argv)
         print_arr(numbers);
     }
 
-    print_csv(numbers);
+    print_json(numbers);
 
     free(numbers->data);
     free(numbers);
@@ -240,4 +241,33 @@ void print_csv(Data *numbers)
         sum(numbers), numbers->len, average(numbers), variance(numbers), stddev(numbers), numbers->data[0], numbers->data[numbers->len - 1],
         pct(numbers, 25), pct(numbers, 30), pct(numbers, 40), pct(numbers, 50), pct(numbers, 60), pct(numbers, 70), pct(numbers, 75), pct(numbers, 80),
         pct(numbers, 90), pct(numbers, 95), pct(numbers, 99), pct(numbers, 99.9), pct(numbers, 99.99));
+}
+
+void print_json(Data *numbers)
+{
+    printf(
+        "{\"%s\":%.2f,\"%s\":%ld,\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,"
+        "\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,"
+        "\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f,\"%s\":%.2f}\n",
+        "Sum", sum(numbers),
+        "Count", numbers->len,
+        "Mean", average(numbers),
+        "Variance", variance(numbers),
+        "StdDev", stddev(numbers),
+        "Min", numbers->data[0],
+        "Max", numbers->data[numbers->len - 1],
+        "p25", pct(numbers, 25),
+        "p30", pct(numbers, 30),
+        "p40", pct(numbers, 40),
+        "p50", pct(numbers, 50),
+        "p60", pct(numbers, 60),
+        "p70", pct(numbers, 70),
+        "p75", pct(numbers, 75),
+        "p80", pct(numbers, 80),
+        "p90", pct(numbers, 90),
+        "p95", pct(numbers, 95),
+        "p99", pct(numbers, 99),
+        "p99.9", pct(numbers, 99.9),
+        "p99.99", pct(numbers, 99.99)  
+         );
 }
