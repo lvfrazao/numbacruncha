@@ -53,6 +53,7 @@ int main(int argc, char **argv)
             exit(EXIT_FAILURE);
         }
         numbers = read_input(f);
+        fclose(f);
         break;
     default:
         fprintf(stderr, "Invalid options\n%s", usage);
@@ -82,6 +83,10 @@ Data *read_input(FILE *f)
     size_t len = 0;
     ssize_t nread, total_read = 0;
     Data *numbers = malloc(sizeof(Data));
+    if (numbers == NULL) {
+        perror("malloc failed!");
+        exit(EXIT_FAILURE);
+    } 
     numbers->len = 0;
     numbers->data = calloc(INIT_BUF, sizeof(double));
     numbers->buf_size = INIT_BUF * sizeof(double);
